@@ -1,10 +1,10 @@
 ---
 layout: layouts/post.njk
-title: About Me
+title: How I Can Help You
 templateClass: tmpl-post
 eleventyNavigation:
-  key: About Me
-  order: 2
+  key: How I Can Help You
+  order: 40
 ---
 
 I am a person that writes stuff.

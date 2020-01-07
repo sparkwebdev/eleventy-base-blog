@@ -10,9 +10,10 @@
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
   </head>
   <body>
-    <header>
-      <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
-
+    <header class="header-branding w-sticky">
+      <span class="header-branding-title"><a href="{{ '/' | url }}">{{ metadata.title }}</a></span>
+    </header>
+    <nav class="header-nav w-sticky">
       {#- Read more about `eleventy-navigation` at https://github.com/11ty/eleventy-navigation #}
       {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({
         listClass: "nav",
@@ -20,18 +21,21 @@
         activeListItemClass: "nav-item-active",
         activeKey: eleventyNavigation.key
       }) | safe }}
-    </header>
+    </nav>
+    <div class="cmpnt cmpnt-intro">
+      <h1 class="cmpnt-intro-title headline">{{ renderData.title or title }}</h1>
+    </div>
+    
+    {# <nav class="header-nav sub-header-nav w-sticky">
+      {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({
+        listClass: "nav",
+        listItemClass: "nav-item",
+        activeListItemClass: "nav-item-active",
+        activeKey: eleventyNavigation.key
+      }) | safe }}
+    </nav> #}
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
-      <div class="warning">
-        <ol>
-          <li>Edit the <code>_data/metadata.json</code> with your blog’s information.</li>
-          <li>(Optional) Edit <code>.eleventy.js</code> with your configuration preferences.</li>
-          <li>Delete this message from <code>_includes/layouts/base.njk</code>.</li>
-        </ol>
-        <p><em>This is an <a href="https://www.11ty.io/">Eleventy project</a> created from the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
-      </div>
-
       {{ content | safe }}
     </main>
 
